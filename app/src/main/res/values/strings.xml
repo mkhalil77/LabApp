@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">LabApp</string>
+    <string name="reading_from_accelorometre">Reading from Accelorometre</string>
+    <string name="data_from_acceloreometre">Data From acceloreometre</string>
+    <string name="reading_from_light_snesor">Reading From Light Snesor</string>
+    <string name="data_from_light_senesor">Data from Light senesor</string>
+    <string name="data_from_baro">data from baro</string>
+    <string name="reading_from_magnetometers">Reading from Magnetometers</string>
+    <string name="reading_from_gyro">Reading from Gyro</string>
+    <string name="reading_from_hall_effect">Reading from Hall effect</string>
+    <string name="reading_from_barometer">Reading from barometer</string>
+    <string name="start_recoding">Start Recoding</string>
+</resources>
