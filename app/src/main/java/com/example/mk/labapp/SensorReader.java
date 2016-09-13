@@ -15,7 +15,6 @@ public class SensorReader extends AppCompatActivity {
     private SensorManager sensorManager;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -34,42 +33,52 @@ public class SensorReader extends AppCompatActivity {
 
         SensorEventListener sensorListner = new SensorEventListener() {
             @Override
-            public void onSensorChanged(SensorEvent sensorEvent) {
+            public void onSensorChanged(SensorEvent event) {
 
-                if (sensorEvent.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
-                    DataFromAccelorometer.setText("" + Float.toString(sensorEvent.values[0]));
-                    Log.d("TAG1", "onSensorChanged:Prox " + Float.toString(sensorEvent.values[0]));
+
+                if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
+                    final float alpha = (float) 0.8;
+                    double[] gravity = new double[3];
+                    double[] linear_acceleration = new double[3];
+                    // Isolate the force of gravity with the low-pass filter.
+                    gravity[0] = alpha * gravity[0] + (1 - alpha) * event.values[0];
+                    gravity[1] = alpha * gravity[1] + (1 - alpha) * event.values[1];
+                    gravity[2] = alpha * gravity[2] + (1 - alpha) * event.values[2];
+
+                    // Remove the gravity contribution with the high-pass filter.
+                    linear_acceleration[0] = event.values[0] - gravity[0];
+                    linear_acceleration[1] = event.values[1] - gravity[1];
+                    linear_acceleration[2] = event.values[2] - gravity[2];
+
+                    DataFromAccelorometer.setText("x" + gravity[0] + "y" + gravity[1] + " z " + gravity[2]);
                 }
 
 
-                if (sensorEvent.sensor.getType() == Sensor.TYPE_PROXIMITY) {
-                    DataFromProx.setText("" + Float.toString(sensorEvent.values[0]));
+                if (event.sensor.getType() == Sensor.TYPE_PROXIMITY) {
+                    if (event.values[0] == 0)
+                        DataFromProx.setText("near");
+                    else
+                        DataFromProx.setText("far");
                     Log.d("TAG1", "onSensorChanged:Prox ");
                 }
 
 
-                if (sensorEvent.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD) {
-                    DataFromMagne.setText("" + Float.toString(sensorEvent.values[0]));
-                    Log.d("onSensorChanged:mag", Float.toString(sensorEvent.values[0]));
+                if (event.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD) {
+                    DataFromMagne.setText("x" + Float.toString(event.values[0]) + "y" + Float.toString(event.values[0]) + "z" + Float.toString(event.values[0]));
+                    Log.d("onSensorChanged:mag", Float.toString(event.values[0]));
                 }
 
 
-                if (sensorEvent.sensor.getType() == Sensor.TYPE_GYROSCOPE) {
-                    DataFromGyro.setText("" + (Float.toString(sensorEvent.values[0])));
-                    Log.d("onSensorChanged:Gyro", Float.toString(sensorEvent.values[0]));
+                if (event.sensor.getType() == Sensor.TYPE_LIGHT) {
+                    DataFromLight.setText("" + (Float.toString(event.values[0])));
+                    Log.d("TAG1", "onSensorChanged:Light " + Float.toString(event.values[0]));
                 }
 
 
-                if (sensorEvent.sensor.getType() == Sensor.TYPE_LIGHT) {
-                    DataFromLight.setText("" + (Float.toString(sensorEvent.values[0])));
-                    Log.d("TAG1", "onSensorChanged:Light " + Float.toString(sensorEvent.values[0]));
-                }
-
-
-                if (sensorEvent.sensor.getType() == Sensor.TYPE_PRESSURE) {
-                    String Pressure = Float.toString(sensorEvent.values[0]);
+                if (event.sensor.getType() == Sensor.TYPE_PRESSURE) {
+                    String Pressure = Float.toString(event.values[0]);
                     DataFromBarometer.setText("" + Pressure);
-                    Log.d("onSensorChanged:Baro", Float.toString(sensorEvent.values[0]));
+                    Log.d("onSensorChanged:Baro", Float.toString(event.values[0]));
                 }
 
 
@@ -83,17 +92,13 @@ public class SensorReader extends AppCompatActivity {
         };
 
 
-        msensorManager.registerListener(sensorListner, msensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_GAME);
-        msensorManager.registerListener(sensorListner, msensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY), SensorManager.SENSOR_DELAY_GAME);
-        msensorManager.registerListener(sensorListner, msensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD), SensorManager.SENSOR_DELAY_GAME);
-        msensorManager.registerListener(sensorListner, msensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE), SensorManager.SENSOR_DELAY_GAME);
-        msensorManager.registerListener(sensorListner, msensorManager.getDefaultSensor(Sensor.TYPE_LIGHT), SensorManager.SENSOR_DELAY_GAME);
-        msensorManager.registerListener(sensorListner, msensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE), SensorManager.SENSOR_DELAY_GAME);
+        msensorManager.registerListener(sensorListner, msensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL);
+        msensorManager.registerListener(sensorListner, msensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY), SensorManager.SENSOR_DELAY_NORMAL);
+        msensorManager.registerListener(sensorListner, msensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD), SensorManager.SENSOR_DELAY_NORMAL);
+        msensorManager.registerListener(sensorListner, msensorManager.getDefaultSensor(Sensor.TYPE_LIGHT), SensorManager.SENSOR_DELAY_NORMAL);
+        msensorManager.registerListener(sensorListner, msensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE), SensorManager.SENSOR_DELAY_NORMAL);
 
 
-/*
-        List<Sensor> list = sensorManager.getSensorList(Sensor.TYPE_ALL);
-        Sensor Accelo = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);*/
     }
 
 
