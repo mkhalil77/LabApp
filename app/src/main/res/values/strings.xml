@@ -10,4 +10,6 @@
     <string name="reading_from_hall_effect">Reading from Hall effect</string>
     <string name="reading_from_barometer">Reading from barometer</string>
     <string name="start_recoding">Start Recoding</string>
+    <string name="reading_from_proximity_sensor">Reading from proximity Sensor</string>
+    <string name="data_from_prox">Data from prox</string>
 </resources>

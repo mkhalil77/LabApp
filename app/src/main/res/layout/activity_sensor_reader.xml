@@ -105,12 +105,11 @@
         android:layout_marginBottom="10dp"/>
 
 
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/reading_from_hall_effect"
-        android:id="@+id/ReadingFromHall"
+        android:text="@string/reading_from_proximity_sensor"
+        android:id="@+id/ReadingFromProx"
         android:textColor="#000000"
         android:textSize="15sp"
         />
@@ -118,8 +117,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/data_from_baro"
-        android:id="@+id/DataFromHall"
+        android:text="@string/data_from_prox"
+        android:id="@+id/DataFromprox"
         android:textColor="#000000"
         android:textSize="15sp"
         android:layout_marginBottom="10dp"
