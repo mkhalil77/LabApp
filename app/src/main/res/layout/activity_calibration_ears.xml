@@ -1,148 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.mk.labapp.SensorReader">
+    tools:context="com.example.mk.labapp.CalibrationEars">
 
     <TextView
-        android:id="@+id/ReadingFromAcce"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Please click record and put your phone into your ear !"
+        android:id="@+id/InstructionEar"
+        android:textColor="#000000"
+        android:textSize="20sp" />
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/reading_from_accelorometre"
+        android:id="@+id/ReadingFromAcce"
         android:textColor="#000000"
         android:textSize="15sp" />
 
     <TextView
-        android:id="@+id/DataFromAcce"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="10dp"
         android:text="@string/data_from_acceloreometre"
+        android:id="@+id/DataFromAcce"
         android:textColor="#000000"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp" />
 
 
     <TextView
-        android:id="@+id/ReadingFromlight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/reading_from_light_snesor"
+        android:id="@+id/ReadingFromlight"
         android:textColor="#000000"
         android:textSize="15sp" />
 
     <TextView
-        android:id="@+id/DataFromLight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="10dp"
         android:text="@string/data_from_light_senesor"
+        android:id="@+id/DataFromLight"
         android:textColor="#000000"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp" />
 
 
     <TextView
-        android:id="@+id/ReadingFromBaro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/reading_from_barometer"
+        android:id="@+id/ReadingFromBaro"
         android:textColor="#000000"
         android:textSize="15sp" />
 
     <TextView
-        android:id="@+id/DataFromBaro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="10dp"
         android:text="@string/data_from_baro"
+        android:id="@+id/DataFromBaro"
         android:textColor="#000000"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="center_horizontal" />
 
     <TextView
-        android:id="@+id/Altitudereading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/atltitude_reading"
+        android:id="@+id/Altitudereading"
         android:textColor="#000000"
         android:textSize="15sp" />
 
     <TextView
-        android:id="@+id/DataFromAlti"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="10dp"
         android:text="@string/data_from_baro"
+        android:id="@+id/DataFromAlti"
         android:textColor="#000000"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="center_horizontal" />
 
 
     <TextView
-        android:id="@+id/ReadingFromMagne"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/reading_from_magnetometers"
+        android:id="@+id/ReadingFromMagne"
         android:textColor="#000000"
         android:textSize="15sp" />
 
     <TextView
-        android:id="@+id/DataFromMagne"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="10dp"
         android:text="@string/data_from_baro"
+        android:id="@+id/DataFromMagne"
         android:textColor="#000000"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp" />
 
 
     <TextView
-        android:id="@+id/ReadingFromProx"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/reading_from_proximity_sensor"
+        android:id="@+id/ReadingFromProx"
         android:textColor="#000000"
         android:textSize="15sp" />
 
     <TextView
-        android:id="@+id/DataFromprox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="10dp"
         android:text="@string/data_from_prox"
+        android:id="@+id/DataFromprox"
         android:textColor="#000000"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="center_horizontal" />
 
-    <LinearLayout
-        android:layout_width="fill_parent"
+    <Button
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:text="@string/start_recoding"
+        android:id="@+id/button"
+        android:layout_gravity="center_horizontal" />
 
-        <Button
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/data_succesfuly_recorded"
+        android:visibility="invisible"
+        android:id="@+id/textView"
+        android:layout_gravity="center_horizontal" />
 
-            android:id="@+id/Calibrate"
-            android:layout_width="0sp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1"
-            android:text="Calibrate" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/next_phase"
+        android:id="@+id/nextPhase"
+        android:layout_gravity="center_horizontal" />
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="0sp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1"
-            android:text="Detect Position" />
 
-    </LinearLayout>
 </LinearLayout>

@@ -12,4 +12,8 @@
     <string name="start_recoding">Start Recoding</string>
     <string name="reading_from_proximity_sensor">Reading from proximity Sensor</string>
     <string name="data_from_prox">Data from prox</string>
+    <string name="atltitude_reading">Atltitude reading</string>
+    <string name="next_phase">NEXT PHASE !</string>
+    <string name="data_succesfuly_recorded">Data Succesfuly Recorded !</string>
+    <string name="go_back_to_main_screen">Go back to main screen</string>
 </resources>

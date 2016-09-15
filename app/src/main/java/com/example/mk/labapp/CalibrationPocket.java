@@ -15,37 +15,30 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class SensorReader extends AppCompatActivity {
-    public SensorData data = new SensorData();
+public class CalibrationPocket extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sensor_reader);
-        Intent I = getIntent();
-        if (I.getSerializableExtra("data") != null)
-            data = (SensorData) I.getSerializableExtra("data");
+        setContentView(R.layout.activity_calibration_pocket);
         final TextView DataFromAccelorometer = (TextView) findViewById(R.id.DataFromAcce);
         final TextView DataFromBarometer = (TextView) findViewById(R.id.DataFromBaro);
         final TextView DataFromMagne = (TextView) findViewById(R.id.DataFromMagne);
         final TextView DataFromAlti = (TextView) findViewById(R.id.DataFromAlti);
         final TextView DataFromLight = (TextView) findViewById(R.id.DataFromLight);
         final TextView DataFromProx = (TextView) findViewById(R.id.DataFromprox);
-        final Button Calibrate = (Button) findViewById(R.id.Calibrate);
+        final Button NextPhase = (Button) findViewById(R.id.nextPhase);
         SensorManager msensorManager = (SensorManager) this.getSystemService(SENSOR_SERVICE);
 
 
-        //Calibration code
-        Calibrate.setOnClickListener(new View.OnClickListener() {
+        NextPhase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                Intent intent = new Intent(SensorReader.this, CalibrationEars.class);
-                //   intent.putExtra("SensorData", (Serializable) toPass);
+                Intent intent = new Intent(CalibrationPocket.this, CalibrationBackPocket.class);
                 startActivity(intent);
+
             }
         });
-
 
 
         SensorEventListener sensorListner = new SensorEventListener() {
