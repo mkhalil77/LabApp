@@ -14,8 +14,10 @@ public class SensorData implements Parcelable {
     double Pressure;
     double Altitude;
 
-
     public SensorData() {
+        acceleration_vector = new double[3];
+        magnetic_vector = new double[3];
+
     }
 
     protected SensorData(Parcel in) {
@@ -39,6 +41,53 @@ public class SensorData implements Parcelable {
         }
     };
 
+    public double[] getAcceleration_vector() {
+        return acceleration_vector;
+    }
+
+    public void setAcceleration_vector(double[] acceleration_vector) {
+        this.acceleration_vector = acceleration_vector;
+    }
+
+    public int getProximity() {
+        return Proximity;
+    }
+
+    public void setProximity(int proximity) {
+        Proximity = proximity;
+    }
+
+    public double[] getMagnetic_vector() {
+        return magnetic_vector;
+    }
+
+    public void setMagnetic_vector(double[] magnetic_vector) {
+        this.magnetic_vector = magnetic_vector;
+    }
+
+    public double getLight() {
+        return light;
+    }
+
+    public void setLight(double light) {
+        this.light = light;
+    }
+
+    public double getPressure() {
+        return Pressure;
+    }
+
+    public void setPressure(double pressure) {
+        Pressure = pressure;
+    }
+
+    public double getAltitude() {
+        return Altitude;
+    }
+
+    public void setAltitude(double altitude) {
+        Altitude = altitude;
+    }
 
     @Override
     public int describeContents() {
