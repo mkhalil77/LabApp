@@ -17,8 +17,10 @@ import android.widget.TextView;
 
 public class CalibrationEars extends AppCompatActivity {
 
-    private SensorManager sensorManager;
-    private SensorData data = new SensorData();
+
+    private SensorData[] Temp = new SensorData[100];
+    private SensorData[] Center = new SensorData[5];
+    int a = 0, b = 0, c = 0, d = 0, e = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +42,40 @@ public class CalibrationEars extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intenet = new Intent(CalibrationEars.this, CalibrationHand.class);
-                startActivity(intenet);
+                {
+                    SensorData avg = new SensorData();
+
+                    for (int i = 0; i < 100; i++) {
+                        avg.acceleration_vector[0] = avg.acceleration_vector[0] + Temp[i].acceleration_vector[0];
+                        avg.acceleration_vector[1] = avg.acceleration_vector[1] + Temp[i].acceleration_vector[1];
+                        avg.acceleration_vector[2] = avg.acceleration_vector[2] + Temp[i].acceleration_vector[2];
+                        avg.Proximity = avg.Proximity + Temp[i].Proximity;
+                        avg.magnetic_vector[0] = avg.magnetic_vector[0] + Temp[i].magnetic_vector[0];
+                        avg.magnetic_vector[1] = avg.magnetic_vector[1] + Temp[i].magnetic_vector[1];
+                        avg.magnetic_vector[2] = avg.magnetic_vector[2] + Temp[i].magnetic_vector[2];
+                        avg.Altitude = avg.Altitude + Temp[i].Altitude;
+                        avg.Pressure = avg.Pressure + Temp[i].Pressure;
+
+
+                    }
+
+                    avg.acceleration_vector[0] = avg.acceleration_vector[0] / 100;
+                    avg.acceleration_vector[1] = avg.acceleration_vector[1] / 100;
+                    avg.acceleration_vector[2] = avg.acceleration_vector[2] / 100;
+                    avg.Proximity = avg.Proximity / 100;
+                    avg.magnetic_vector[0] = avg.magnetic_vector[0] / 100;
+                    avg.magnetic_vector[1] = avg.magnetic_vector[1] / 100;
+                    avg.magnetic_vector[2] = avg.magnetic_vector[2] / 100;
+                    avg.Altitude = avg.Altitude / 100;
+                    avg.Pressure = avg.Pressure / 100;
+
+                    intenet.putExtra("centers", Center);
+                    startActivity(intenet);
+                }
             }
-        });
+        })
+        ;
+
 
         SensorEventListener sensorListner = new SensorEventListener() {
             @TargetApi(Build.VERSION_CODES.N)
@@ -66,15 +99,25 @@ public class CalibrationEars extends AppCompatActivity {
                     linear_acceleration[1] = event.values[1] - gravity[1];
                     linear_acceleration[2] = event.values[2] - gravity[2];
 
+                    if (a <= 100) {
+                        Temp[a].acceleration_vector[0] = linear_acceleration[0];
+                        Temp[a].acceleration_vector[1] = linear_acceleration[1];
+                        Temp[a++].acceleration_vector[2] = linear_acceleration[2];
+                    }
                     DataFromAccelorometer.setText("(" + df.format(gravity[0]) + "  , " + df.format(gravity[1]) + " , " + df.format(gravity[2]) + ")");
                 }
 
 
                 if (event.sensor.getType() == Sensor.TYPE_PROXIMITY) {
-                    if (event.values[0] == 0)
+                    if (event.values[0] == 0) {
                         DataFromProx.setText("near");
-                    else
+                        if (b < 100)
+                            Temp[b++].Proximity = 1;
+                    } else {
                         DataFromProx.setText("far");
+                        if (b < 100)
+                            Temp[b++].Proximity = 0;
+                    }
                     Log.d("TAG1", "onSensorChanged:Prox ");
                 }
 
@@ -83,6 +126,11 @@ public class CalibrationEars extends AppCompatActivity {
                     DecimalFormat df = new DecimalFormat();
                     df.setMaximumFractionDigits(4);
                     DataFromMagne.setText("( " + df.format(event.values[0]) + " , " + df.format(event.values[1]) + " , " + df.format(event.values[2]) + ")");
+                    if (c < 100) {
+                        Temp[c].magnetic_vector[0] = event.values[0];
+                        Temp[c].magnetic_vector[1] = event.values[1];
+                        Temp[c++].magnetic_vector[2] = event.values[2];
+                    }
                     Log.d("onSensorChanged:mag", Float.toString(event.values[0]));
                 }
 
@@ -90,6 +138,8 @@ public class CalibrationEars extends AppCompatActivity {
                 if (event.sensor.getType() == Sensor.TYPE_LIGHT) {
                     DataFromLight.setText("" + (Float.toString(event.values[0])));
                     Log.d("TAG1", "onSensorChanged:Light " + Float.toString(event.values[0]));
+                    if (d < 100)
+                        Temp[d++].light = event.values[0];
                 }
 
 
@@ -101,6 +151,10 @@ public class CalibrationEars extends AppCompatActivity {
                     DataFromBarometer.setText("The pressure Value : " + Pressure);
                     DataFromAlti.setText("The Altitude from Sea Level : " + height);
                     Log.d("onSensorChanged:Baro", Float.toString(event.values[0]));
+                    if (e < 100) {
+                        Temp[e].Pressure = event.values[0];
+                        Temp[e++].Altitude = height;
+                    }
                 }
 
 

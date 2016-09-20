@@ -1,68 +1,57 @@
 package com.example.mk.labapp;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by Mk on 9/14/2016.
  */
-public class SensorData {
+public class SensorData implements Parcelable {
     double[] acceleration_vector;
-    Boolean Proximity;
+    int Proximity;
     double[] magnetic_vector;
     double light;
     double Pressure;
+    double Altitude;
 
 
     public SensorData() {
     }
 
-    public SensorData(double[] acceleration_vector, Boolean proximity, double[] magnetic_vector, double light, double pressure) {
-        this.acceleration_vector = acceleration_vector;
-        Proximity = proximity;
-        this.magnetic_vector = magnetic_vector;
-        this.light = light;
-        Pressure = pressure;
+    protected SensorData(Parcel in) {
+        acceleration_vector = in.createDoubleArray();
+        Proximity = in.readInt();
+        magnetic_vector = in.createDoubleArray();
+        light = in.readDouble();
+        Pressure = in.readDouble();
+        Altitude = in.readDouble();
     }
 
+    public static final Creator<SensorData> CREATOR = new Creator<SensorData>() {
+        @Override
+        public SensorData createFromParcel(Parcel in) {
+            return new SensorData(in);
+        }
 
-    public double[] getAcceleration_vector() {
-        return acceleration_vector;
+        @Override
+        public SensorData[] newArray(int size) {
+            return new SensorData[size];
+        }
+    };
+
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
-    public Boolean getProximity() {
-        return Proximity;
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeDoubleArray(acceleration_vector);
+        parcel.writeInt(Proximity);
+        parcel.writeDoubleArray(magnetic_vector);
+        parcel.writeDouble(light);
+        parcel.writeDouble(Pressure);
+        parcel.writeDouble(Altitude);
     }
-
-    public void setProximity(Boolean proximity) {
-        Proximity = proximity;
-    }
-
-    public double[] getMagnetic_vector() {
-        return magnetic_vector;
-    }
-
-    public void setMagnetic_vector(double[] magnetic_vector) {
-        this.magnetic_vector = magnetic_vector;
-    }
-
-    public double getLight() {
-        return light;
-    }
-
-    public void setLight(double light) {
-        this.light = light;
-    }
-
-    public double getPressure() {
-        return Pressure;
-    }
-
-    public void setPressure(double pressure) {
-        Pressure = pressure;
-    }
-
-    public void setAcceleration_vector(double[] acceleration_vector) {
-        this.acceleration_vector = acceleration_vector;
-
-    }
-
-
 }
