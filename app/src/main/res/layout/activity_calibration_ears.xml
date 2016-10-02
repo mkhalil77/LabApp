@@ -143,7 +143,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/data_succesfuly_recorded"
         android:visibility="invisible"
-        android:id="@+id/textView"
+        android:id="@+id/CenterEar"
         android:layout_gravity="center_horizontal" />
 
     <Button

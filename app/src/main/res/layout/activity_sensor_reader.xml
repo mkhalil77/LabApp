@@ -127,15 +127,15 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+
         <Button
 
-            android:id="@+id/Calibrate"
+            android:id="@+id/Calibration"
             android:layout_width="0sp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_weight="1"
             android:text="Calibrate" />
-
         <Button
             android:id="@+id/button"
             android:layout_width="0sp"

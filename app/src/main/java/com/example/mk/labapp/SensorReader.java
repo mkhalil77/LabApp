@@ -10,30 +10,37 @@ import android.icu.text.DecimalFormat;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 public class SensorReader extends AppCompatActivity {
     public SensorData data = new SensorData();
+    public SensorData[] Center = new SensorData[5];
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sensor_reader);
         Intent I = getIntent();
-        if (I.getSerializableExtra("data") != null)
-            data = (SensorData) I.getSerializableExtra("data");
+        if (I.getSerializableExtra("Center") != null)
+            Center = (SensorData[]) I.getSerializableExtra("Center");
+        else {
+            for (int h = 0; h < 5; h++)
+                Center[h] = new SensorData();
+        }
+
+
+
+
         final TextView DataFromAccelorometer = (TextView) findViewById(R.id.DataFromAcce);
         final TextView DataFromBarometer = (TextView) findViewById(R.id.DataFromBaro);
         final TextView DataFromMagne = (TextView) findViewById(R.id.DataFromMagne);
         final TextView DataFromAlti = (TextView) findViewById(R.id.DataFromAlti);
         final TextView DataFromLight = (TextView) findViewById(R.id.DataFromLight);
         final TextView DataFromProx = (TextView) findViewById(R.id.DataFromprox);
-        final Button Calibrate = (Button) findViewById(R.id.Calibrate);
         SensorManager msensorManager = (SensorManager) this.getSystemService(SENSOR_SERVICE);
-
+        final Button Calibrate = (Button) findViewById(R.id.Calibration);
 
         //Calibration code
         Calibrate.setOnClickListener(new View.OnClickListener() {
@@ -41,7 +48,7 @@ public class SensorReader extends AppCompatActivity {
             public void onClick(View view) {
 
                 Intent intent = new Intent(SensorReader.this, CalibrationEars.class);
-                //   intent.putExtra("SensorData", (Serializable) toPass);
+                intent.putExtra("Center", Center);
                 startActivity(intent);
             }
         });
@@ -79,7 +86,7 @@ public class SensorReader extends AppCompatActivity {
                         DataFromProx.setText("near");
                     else
                         DataFromProx.setText("far");
-                    Log.d("TAG1", "onSensorChanged:Prox ");
+
                 }
 
 
@@ -87,13 +94,13 @@ public class SensorReader extends AppCompatActivity {
                     DecimalFormat df = new DecimalFormat();
                     df.setMaximumFractionDigits(4);
                     DataFromMagne.setText("( " + df.format(event.values[0]) + " , " + df.format(event.values[1]) + " , " + df.format(event.values[2]) + ")");
-                    Log.d("onSensorChanged:mag", Float.toString(event.values[0]));
+
                 }
 
 
                 if (event.sensor.getType() == Sensor.TYPE_LIGHT) {
                     DataFromLight.setText("" + (Float.toString(event.values[0])));
-                    Log.d("TAG1", "onSensorChanged:Light " + Float.toString(event.values[0]));
+
                 }
 
 
@@ -104,7 +111,7 @@ public class SensorReader extends AppCompatActivity {
                     height = SensorManager.getAltitude(SensorManager.PRESSURE_STANDARD_ATMOSPHERE, event.values[0]);
                     DataFromBarometer.setText("The pressure Value : " + Pressure);
                     DataFromAlti.setText("The Altitude from Sea Level : " + height);
-                    Log.d("onSensorChanged:Baro", Float.toString(event.values[0]));
+
                 }
 
 
