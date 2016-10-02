@@ -13,7 +13,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Please click record and put your phone into your ear !"
+        android:text="Please click record and put your phone next to your ear !"
         android:id="@+id/InstructionEar"
         android:textColor="#000000"
         android:textSize="20sp" />

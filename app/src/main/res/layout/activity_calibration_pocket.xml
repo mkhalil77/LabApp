@@ -9,11 +9,10 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.mk.labapp.CalibrationPocket">
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Please click record and put your phone into your pocket !"
+        android:text="Please click record and put your phone in your pocket !"
         android:id="@+id/InstructionEar"
         android:textColor="#000000"
         android:textSize="20sp" />
@@ -134,7 +133,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/start_recoding"
-        android:id="@+id/button"
+        android:id="@+id/record"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/data_succesfuly_recorded"
+        android:visibility="invisible"
+        android:id="@+id/Processing"
         android:layout_gravity="center_horizontal" />
 
 
@@ -144,6 +152,4 @@
         android:text="@string/next_phase"
         android:id="@+id/nextPhase"
         android:layout_gravity="center_horizontal" />
-
-
 </LinearLayout>
