@@ -7,9 +7,6 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.icu.text.DecimalFormat;
-import android.media.Ringtone;
-import android.media.RingtoneManager;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -93,7 +90,7 @@ public class CalibrationEars extends AppCompatActivity {
                             if (a < 100) {
                                 Temp[a].acceleration_vector = new double[3];
                                 Temp[a++].setAcceleration_vector(linear_acceleration);
-                                Log.d("Value of A", "Value of A " + a);
+
 
                             }
                             DataFromAccelorometer.setText("(" + df.format(gravity[0]) + "  , " + df.format(gravity[1]) + " , " + df.format(gravity[2]) + ")");
@@ -111,7 +108,7 @@ public class CalibrationEars extends AppCompatActivity {
                                     Temp[b].setProximity(1);
 
                                 }
-                            Log.d("Value of B", "Value of B " + b);
+
 
                         }
 
@@ -126,7 +123,7 @@ public class CalibrationEars extends AppCompatActivity {
                                 Temp[c].magnetic_vector[0] = event.values[0];
                                 Temp[c].magnetic_vector[1] = event.values[1];
                                 Temp[c++].magnetic_vector[2] = event.values[2];
-                                Log.d("Value of C", "Value of C " + c);
+
 
                             }
 
@@ -142,7 +139,7 @@ public class CalibrationEars extends AppCompatActivity {
                                     Temp[d].light = event.values[0];
                                     d++;
                                 }
-                            Log.d("Value of d", "Value of D " + d);
+
                         }
 
 
@@ -158,7 +155,7 @@ public class CalibrationEars extends AppCompatActivity {
                                 Log.d("Value of E", "Value of E " + e);
                                 Temp[e].Pressure = event.values[0];
                                 Temp[e++].Altitude = height;
-                                Log.d("Value of E", "Value of E " + e);
+
                             }
                         }
 
@@ -193,8 +190,6 @@ public class CalibrationEars extends AppCompatActivity {
                             avg.Altitude = avg.Altitude / 100;
                             avg.Pressure = avg.Pressure / 100;
                             avg.light = avg.light / 100;
-                            Log.d("Center", avg.acceleration_vector[0] + " " + avg.acceleration_vector[1] + " " + avg.acceleration_vector[2] + " "
-                                    + avg.Proximity + " " + avg.Altitude + " " + avg.Pressure);
 
                             DecimalFormat df = new DecimalFormat();
                             df.setMaximumFractionDigits(2);
@@ -205,13 +200,6 @@ public class CalibrationEars extends AppCompatActivity {
                                     + "Ligh " + avg.light + "Magne Vector (" + df.format(avg.magnetic_vector[0]) + "," + df.format(avg.magnetic_vector[1]) + "," + df.format(avg.magnetic_vector[2]) + " )" + "Proximity " + avg.Proximity + " Altitude :  " + df.format(avg.Altitude) + " Pressure " + df.format(avg.Pressure));
 
 
-                            try {
-                                Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-                                Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
-                                r.play();
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
                             a++;
 
                         }

@@ -192,8 +192,6 @@ public class CalibrationHand extends AppCompatActivity {
                             avg.Altitude = avg.Altitude / 100;
                             avg.Pressure = avg.Pressure / 100;
                             avg.light = avg.light / 100;
-                            Log.d("Center", avg.acceleration_vector[0] + " " + avg.acceleration_vector[1] + " " + avg.acceleration_vector[2] + " "
-                                    + avg.Proximity + " " + avg.Altitude + " " + avg.Pressure);
 
                             DecimalFormat df = new DecimalFormat();
                             df.setMaximumFractionDigits(2);

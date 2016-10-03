@@ -13,7 +13,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -134,7 +133,7 @@ public class CalibrationPocket extends AppCompatActivity {
 
                         if (event.sensor.getType() == Sensor.TYPE_LIGHT) {
                             DataFromLight.setText("" + (Float.toString(event.values[0])));
-                            Log.d("Value of d", "Value of D " + d);
+
 
                             if (d < 100)
                                 for (int i = 0; i < 100; i++) {
@@ -154,7 +153,7 @@ public class CalibrationPocket extends AppCompatActivity {
                             DataFromAlti.setText("The Altitude from Sea Level : " + height);
 
                             if (e < 100) {
-                                Log.d("Value of E", "Value of E " + e);
+
                                 Temp[e].Pressure = event.values[0];
                                 Temp[e++].Altitude = height;
 
@@ -192,8 +191,6 @@ public class CalibrationPocket extends AppCompatActivity {
                             avg.Altitude = avg.Altitude / 100;
                             avg.Pressure = avg.Pressure / 100;
                             avg.light = avg.light / 100;
-                            Log.d("Center", avg.acceleration_vector[0] + " " + avg.acceleration_vector[1] + " " + avg.acceleration_vector[2] + " "
-                                    + avg.Proximity + " " + avg.Altitude + " " + avg.Pressure);
 
                             DecimalFormat df = new DecimalFormat();
                             df.setMaximumFractionDigits(2);

@@ -26,7 +26,11 @@
         <activity android:name=".CalibrationEars" />
         <activity android:name=".CalibrationPocket" />
         <activity android:name=".CalibrationHand" />
-        <activity android:name=".CalibrationBackPocket"></activity>
+        <activity android:name=".CalibrationBackPocket" />
+        <activity
+            android:name=".DetectPosition"
+            android:label="@string/title_activity_detect_position"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

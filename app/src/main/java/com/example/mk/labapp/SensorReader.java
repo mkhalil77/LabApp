@@ -90,6 +90,20 @@ public class SensorReader extends AppCompatActivity {
         final TextView DataFromProx = (TextView) findViewById(R.id.DataFromprox);
         SensorManager msensorManager = (SensorManager) this.getSystemService(SENSOR_SERVICE);
         final Button Calibrate = (Button) findViewById(R.id.Calibration);
+        final Button Detect = (Button) findViewById(R.id.Detect);
+
+        Detect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent In = new Intent(SensorReader.this, DetectPosition.class);
+                In.putExtra("CenterEar", CenterEar);
+                In.putExtra("CenterHand", CenterHand);
+                In.putExtra("CenterPocket", CenterPocket);
+                In.putExtra("CenterBackPocket", CenterBackPocket);
+                startActivity(In);
+            }
+        });
+
 
         //Calibration code
         Calibrate.setOnClickListener(new View.OnClickListener() {
