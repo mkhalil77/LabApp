@@ -15,6 +15,8 @@ import android.view.View;
 import android.widget.TextView;
 
 public class DetectPosition extends AppCompatActivity {
+
+
     public SensorData data = new SensorData();
     public SensorData CenterEar = new SensorData();
     public SensorData CenterHand = new SensorData();
@@ -25,7 +27,6 @@ public class DetectPosition extends AppCompatActivity {
     int a = 0;
     int b = 0;
     int c = 0, d = 0, e = 0;
-
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -46,10 +47,6 @@ public class DetectPosition extends AppCompatActivity {
         c = 0;
         d = 0;
         e = 0;
-
-
-
-
 
 
         final TextView CenterEarText = (TextView) findViewById(R.id.CenterEarText);
@@ -91,10 +88,6 @@ public class DetectPosition extends AppCompatActivity {
             CenterEarText.setVisibility(View.VISIBLE);
             CenterPocketText.setVisibility(View.VISIBLE);
             CenterBackPocketText.setVisibility(View.VISIBLE);
-
-
-
-
 
 
         }
@@ -249,6 +242,31 @@ public class DetectPosition extends AppCompatActivity {
                     CurrentCenter.setVisibility(View.VISIBLE);
 
 
+                    double Distance1 = Calculate_distance(avg, CenterEar);
+                    double Distance2 = Calculate_distance(avg, CenterHand);
+                    double Distance3 = Calculate_distance(avg, CenterPocket);
+                    double Distance4 = Calculate_distance(avg, CenterBackPocket);
+
+
+                    int closest = findmax(Distance1, Distance2, Distance3, Distance4);
+
+
+                    if (closest == 1)
+                        Position.setText("The phone is in your Ear");
+
+                    if (closest == 2)
+                        Position.setText("The phone is in your hand");
+
+                    if (closest == 3)
+                        Position.setText("The phone is in your Pocket");
+
+                    if (closest == 4)
+                        Position.setText("The phone is in your Back Pocket");
+
+
+                    Position.setVisibility(View.VISIBLE);
+
+
                 }
             }
 
@@ -256,6 +274,36 @@ public class DetectPosition extends AppCompatActivity {
             @Override
             public void onAccuracyChanged(Sensor sensor, int i) {
 
+            }
+
+            public int findmax(double a, double b, double c, double d) {
+                if (a <= b && a <= c && a <= d)
+                    return 1;
+                if (b <= a && b <= c && b <= d)
+                    return 2;
+                if (c <= b && c <= a && c <= d)
+                    return 3;
+                if (d <= b && d <= c && d <= a)
+                    return 4;
+
+                return 5;
+
+            }
+
+            public double VectorDistance(double[] Vector1, double[] Vector2) {
+                double distance;
+
+                distance = Math.sqrt(Math.pow((Vector1[0] - Vector2[0]), 2) + Math.pow((Vector1[1] - Vector2[1]), 2) + Math.pow((Vector1[2] - Vector2[2]), 2));
+
+                return distance;
+            }
+
+            public double Calculate_distance(SensorData Current, SensorData Center) {
+                double Distance;
+                Distance = Math.sqrt(Math.pow((Current.Altitude - Center.Altitude) * 10, 2) + Math.pow((Current.Pressure - Center.Pressure) * 10, 2) + Math.pow((Current.light - Center.light), 2) + Math.pow((Current.Proximity - Center.Proximity * 5), 2) + Math.pow(VectorDistance(Current.acceleration_vector, Center.acceleration_vector), 2) + Math.pow(VectorDistance(Current.magnetic_vector, Center.magnetic_vector), 2));
+
+
+                return Distance;
             }
         };
 

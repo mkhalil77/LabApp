@@ -133,28 +133,28 @@
     </LinearLayout>
 
     <TextView
-        android:text="TextView"
+        android:text="@string/a"
         android:visibility="invisible"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/CenterEarText" />
 
     <TextView
-        android:text="TextView"
+        android:text="@string/a"
         android:visibility="invisible"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/CenterHandText" />
 
     <TextView
-        android:text="TextView"
+        android:text="@string/a"
         android:visibility="invisible"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/CenterPocketText" />
 
     <TextView
-        android:text="TextView"
+        android:text="@string/a"
         android:visibility="invisible"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -162,7 +162,7 @@
 
 
     <TextView
-        android:text="TextView"
+        android:text="@string/a"
         android:visibility="invisible"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -172,7 +172,7 @@
 
 
     <TextView
-        android:text="TextView"
+        android:text="@string/a"
         android:visibility="invisible"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -18,4 +18,5 @@
     <string name="go_back_to_main_screen">Go back to main screen</string>
     <string name="title_activity_detect_position">DetectPosition</string>
     <string name="please_click_on_the_button_to_detect_your_position">Please Click on the button to detect your Position !</string>
+    <string name="a" />
 </resources>
