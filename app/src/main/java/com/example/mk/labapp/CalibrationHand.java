@@ -34,7 +34,7 @@ public class CalibrationHand extends AppCompatActivity {
 
         Intent I = getIntent();
 
-        CenterEar = (SensorData) I.getExtras().getParcelable("CenterEar");
+        CenterEar = I.getExtras().getParcelable("CenterEar");
 
         Log.d("Center ear", "light " + CenterEar.light + " ");
 
@@ -104,7 +104,7 @@ public class CalibrationHand extends AppCompatActivity {
                             if (event.values[0] == 0) {
                                 DataFromProx.setText("near");
                                 for (b = 0; b < 100; b++)
-                                    Temp[b].setProximity(1);
+                                    Temp[b].setProximity(0);
                             } else {
                                 DataFromProx.setText("far");
                                 for (b = 0; b < 100; b++)

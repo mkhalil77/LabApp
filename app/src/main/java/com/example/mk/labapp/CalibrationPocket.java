@@ -34,8 +34,8 @@ public class CalibrationPocket extends AppCompatActivity {
 
         Intent I = getIntent();
 
-        CenterEar = (SensorData) I.getExtras().getParcelable("CenterEar");
-        CenterHand = (SensorData) I.getExtras().getParcelable("CenterHand");
+        CenterEar = I.getExtras().getParcelable("CenterEar");
+        CenterHand = I.getExtras().getParcelable("CenterHand");
 
 
         Temp = new SensorData[100];
@@ -103,7 +103,7 @@ public class CalibrationPocket extends AppCompatActivity {
                             if (event.values[0] == 0) {
                                 DataFromProx.setText("near");
                                 for (b = 0; b < 100; b++)
-                                    Temp[b].setProximity(1);
+                                    Temp[b].setProximity(0);
                             } else {
                                 DataFromProx.setText("far");
                                 for (b = 0; b < 100; b++)

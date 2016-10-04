@@ -101,7 +101,7 @@ public class CalibrationEars extends AppCompatActivity {
                             if (event.values[0] == 0) {
                                 DataFromProx.setText("near");
                                 for (b = 0; b < 100; b++)
-                                    Temp[b].setProximity(1);
+                                    Temp[b].setProximity(0);
                             } else {
                                 DataFromProx.setText("far");
                                 for (b = 0; b < 100; b++)
