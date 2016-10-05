@@ -143,6 +143,7 @@ public class DetectPosition extends AppCompatActivity {
                         for (b = 0; b < 100; b++)
                             Temp[b].setProximity(0);
                     } else {
+                        
 
                         DataFromProx.setText("far");
                         for (b = 0; b < 100; b++)
